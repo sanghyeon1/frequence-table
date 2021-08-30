@@ -59,11 +59,8 @@ if round(xMin, -1) <= xMin:  # 반올림이 기존보다 작으면
 elif round(int(xMin), -1) >= xMin:  # 반올림이 기존보다 크면 -5
     cMin = round(int(xMin), -1) - 5
 
-print(cMax, cMin)
-
 cValue = [int(cMin)]  # class value -> 계급값 배열
 gap = math.ceil((cMax - cMin) / c)  # 계급구간의 개수
-print(gap)
 
 for i in range(gap):
     temp = c + cValue[i]
