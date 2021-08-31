@@ -121,9 +121,9 @@ for i in range(gap):
     dum.append(rcf[i])
     c_list.append(dum)
 
-# 합계 출력
-print("합계 - 도수 : ", sum(freq))
-print("    - 상대도수 : ", sum(rf))
+# 합계 데이터 입력.
+dum2 = ["", "합계", "", "-", sum(freq), sum(rf), "-", "-"]
+c_list.append(dum2)
 
 # pandas 를 이용하여 표 출력
 df = pd.DataFrame(c_list, columns=["", "계급", "", "계급값", "도수", "상대도수", "누적도수", "누적상대도수"])  # 값이 추가되면 columns값도 하나 추가.
