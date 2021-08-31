@@ -37,9 +37,13 @@ n = len(spl)
 xMax = max(spl)
 xMin = min(spl)
 rng = xMax - xMin  # rng(Range) - 범위
-k = math.ceil(float(math.log(n, 2) + 1))  # k는 계급(class)의 수 - Sturge 방식
+k = int(input("계급의 개수 입력(자동 설정은 x를 누르십시오.) : "))
+if k == 'x':
+    k = math.ceil(float(math.log(n, 2) + 1))  # k는 계급(class)의 수 - Sturge 방식
+else:
+    pass
 
-c = round(rng / k)  # c는 계급구간.
+c = math.ceil(rng / k)  # c는 계급구간.
 
 if int(c) % 2 == 0:
     pass
@@ -67,8 +71,14 @@ for i in range(gap):
     cValue.append(temp)
     if cValue[i+1] > cMax:
         cValue[i+1] = cMax
-print(list(cValue))
+
 # ============================================================
+
+# 계급값 xi 구하기
+xi = [0 for i in range(gap)]
+for i in range(gap):
+    temp = (cValue[i] + cValue[i+1]) / 2
+    xi[i] = temp
 
 # 도수 fi 구하기
 freq = [0 for i in range(gap)]
@@ -104,14 +114,19 @@ for i in range(gap):
     dum.append(cValue[i])
     dum.append("~")
     dum.append(cValue[i+1])  # 여기 아래로 추가되는 값 코딩.
+    dum.append(xi[i])
     dum.append(freq[i])
     dum.append(rf[i])
     dum.append(cf[i])
     dum.append(rcf[i])
     c_list.append(dum)
 
+# 합계 출력
+print("합계 - 도수 : ", sum(freq))
+print("    - 상대도수 : ", sum(rf))
+
 # pandas 를 이용하여 표 출력
-df = pd.DataFrame(c_list, columns=["", "계급", "", "도수", "상대도수", "누적도수", "누적상대도수"])  # 값이 추가되면 columns값도 하나 추가.
+df = pd.DataFrame(c_list, columns=["", "계급", "", "계급값", "도수", "상대도수", "누적도수", "누적상대도수"])  # 값이 추가되면 columns값도 하나 추가.
 print(df)
 
 
