@@ -134,6 +134,3 @@ c_list.append(dum2)
 df = pd.DataFrame(c_list, columns=["", "계급", "", "계급값", "도수", "상대도수", "누적도수", "누적상대도수"])  # 값이 추가되면 columns값도 하나 추가.
 print(df)
 
-
-
-
